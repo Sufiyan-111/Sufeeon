@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Dr. Shaik Tanaz</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      background-color: black;
+      color: white;
+      overflow: hidden;
+    }
+    #timer, #balloons, #letter, #gift, #final-message, #final-close {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      width: 100%;
+    }
+    #timer {
+      display: flex;
+      font-size: 48px;
+    }
+    .balloon {
+      width: 50px;
+      height: 70px;
+      background: red;
+      border-radius: 50% 50% 50% 50%;
+      margin: 10px;
+      animation: float 4s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-200px); }
+      100% { transform: translateY(0); }
+    }
+    .next-button, .open-button, .close-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: gold;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+    #parchment-letter {
+      background: url('https://i.ibb.co/0CmBRXj/parchment.jpg') no-repeat center center/cover;
+      color: #3b2f2f;
+      padding: 40px;
+      width: 80%;
+      max-width: 600px;
+      margin: auto;
+      border: 4px solid #d2b48c;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: left;
+      display: none;
+    }
+    #gift-image {
+      display: none;
+      max-width: 300px;
+      margin: 20px auto;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">5</div>
+  <div id="balloons">
+    <div style="background: skyblue; width: 100%; height: 100%; position: absolute; z-index: -1;"></div>
+    <div class="balloon"></div>
+    <div class="balloon" style="background: blue;"></div>
+    <h1>🎈 Happy Birthday Dr. Shaik Tanaz 🎈</h1>
+    <button class="next-button" onclick="showLetter()">Next</button>
+  </div>
+  <div id="letter">
+    <div class="open-button" onclick="openLetter()">Open Magical Letter</div>
+    <div id="parchment-letter"></div>
+    <button class="close-button" onclick="closeLetter()">Close</button>
+    <button class="next-button" onclick="showGift()">Next</button>
+  </div>
+  <div id="gift">
+    <h2>A Small Present 🎁</h2>
+    <img id="gift-image" src="https://i.ibb.co/fFdF3Sy/stethoscope.jpg" alt="Gift">
+    <button class="next-button" onclick="showFinal()">Next</button>
+  </div>
+  <div id="final-message">
+    <h2>I will give it to you when I come to Nandyal in holidays 💖</h2>
+    <button class="next-button" onclick="showFinalClose()">Next</button>
+  </div>
+  <div id="final-close">
+    <h2>🎉 Once again, Happy Birthday to You! 🎉</h2>
+  </div>  <script>
+    let timerValue = 5;
+    const timerElement = document.getElementById('timer');
+    const messageText = `May Allah bless you with endless happiness, success, and make your dream of becoming a doctor come true, Ameen. There are only a few truly important people in my life—and you are one of them. No matter what life brings—whether it’s joy or sorrow—I will always be there by your side. Once again, I wish you all the best for your future. And… Happy Birthday again! 💖`;
+
+    const parchmentLetter = document.getElementById('parchment-letter');
+
+    function countdown() {
+      timerElement.innerText = timerValue;
+      if (timerValue > 0) {
+        timerValue--;
+        setTimeout(countdown, 1000);
+      } else {
+        timerElement.style.display = 'none';
+        document.getElementById('balloons').style.display = 'flex';
+      }
+    }
+
+    function showLetter() {
+      document.getElementById('balloons').style.display = 'none';
+      document.getElementById('letter').style.display = 'flex';
+    }
+
+    function openLetter() {
+      parchmentLetter.style.display = 'block';
+      let i = 0;
+      parchmentLetter.innerHTML = '';
+      const interval = setInterval(() => {
+        if (i < messageText.length) {
+          parchmentLetter.innerHTML += messageText[i];
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 30);
+    }
+
+    function closeLetter() {
+      parchmentLetter.style.display = 'none';
+    }
+
+    function showGift() {
+      document.getElementById('letter').style.display = 'none';
+      document.getElementById('gift').style.display = 'flex';
+      document.getElementById('gift-image').style.display = 'block';
+    }
+
+    function showFinal() {
+      document.getElementById('gift').style.display = 'none';
+      document.getElementById('final-message').style.display = 'flex';
+    }
+
+    function showFinalClose() {
+      document.getElementById('final-message').style.display = 'none';
+      document.getElementById('final-close').style.display = 'flex';
+    }
+
+    countdown();
+  </script></body>
+</html>
